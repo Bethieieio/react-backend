@@ -5,7 +5,7 @@ from .models import Post
 class PostSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
-    profile_id = serializers.SerializerMethodField()
+    profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
 
     def validate_image(self, value):
@@ -21,7 +21,7 @@ class PostSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Image height larger than 4096px'
             )
-        return value 
+        return value
 
     def get_is_owner(self, object):
         request = self.context['request']
