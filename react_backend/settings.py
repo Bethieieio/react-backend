@@ -65,6 +65,9 @@ DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), 'localhost',]
 
+print('-------------allowed hosts')
+print(ALLOWED_HOSTS)
+
 # Application definition
 
 INSTALLED_APPS = [
